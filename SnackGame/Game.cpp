@@ -6,10 +6,16 @@
 //  Copyright © Reiwa 2 Sou. All rights reserved.
 //
 
+#include <time.h>
 #include "Game.hpp"
 
 const int HEIGHT = 480;
 const int WIDTH = 640;
+
+const int DIRECTION_UP = 0;
+const int DIRECTION_DOWN = 1;
+const int DIRECTION_RIGHT = 2;
+const int DIRECTION_LEFT = 3;
 
 Game::Game()
 :window(nullptr)
@@ -17,6 +23,15 @@ Game::Game()
 ,isRunning(true)
 ,ticksCount(0)
 {}
+
+void RandomFeedPosition(Snack snack, vector2 *feed) {
+    feed->x = (rand() % (WIDTH - POINT_WH) / 10 + 1) * 10;
+    feed->y = (rand() % (HEIGHT - POINT_WH) / 10 + 1) * 10;
+    while (snack.SearchNode(*feed) > -1) {
+        feed->x = (rand() % (WIDTH - POINT_WH) / 10 + 1) * 10;
+        feed->y = (rand() % (HEIGHT - POINT_WH) / 10 + 1) * 10;
+    }
+}
 
 bool Game::Initialize() {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
@@ -43,6 +58,17 @@ bool Game::Initialize() {
         SDL_Log("Failed to create renderer: %s", SDL_GetError());
         return false;
     }
+
+    direction = DIRECTION_RIGHT;
+
+    snack = Snack();
+    snack.InsertHead(vector2{WIDTH/2-POINT_WH*4, HEIGHT/2});
+    snack.InsertHead(vector2{WIDTH/2-POINT_WH*3, HEIGHT/2});
+    snack.InsertHead(vector2{WIDTH/2-POINT_WH*2, HEIGHT/2});
+    snack.InsertHead(vector2{WIDTH/2-POINT_WH*1, HEIGHT/2});
+
+    srand((unsigned int)time(NULL));
+    RandomFeedPosition(snack, &feed);
 
     return true;
 }

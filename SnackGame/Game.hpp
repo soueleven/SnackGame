@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include "Snack.hpp"
 
 class Game {
 public:
@@ -28,6 +29,10 @@ private:
 
     bool isRunning;
     Uint32 ticksCount;
+
+    vector2 feed;
+    int direction;
+    Snack snack;
 };
 
 #endif /* Game_hpp */
