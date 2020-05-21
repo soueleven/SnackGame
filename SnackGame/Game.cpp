@@ -98,6 +98,22 @@ void Game::ProcessInput() {
     if (state[SDL_SCANCODE_ESCAPE]) {
         isRunning = false;
     }
+
+    if (state[SDL_SCANCODE_UP] && (direction != DIRECTION_DOWN)) {
+        direction = DIRECTION_UP;
+    }
+
+    if (state[SDL_SCANCODE_DOWN] && (direction != DIRECTION_UP)) {
+        direction = DIRECTION_DOWN;
+    }
+
+    if (state[SDL_SCANCODE_RIGHT] && (direction != DIRECTION_LEFT)) {
+        direction = DIRECTION_RIGHT;
+    }
+
+    if (state[SDL_SCANCODE_LEFT] && (direction != DIRECTION_RIGHT)) {
+        direction = DIRECTION_LEFT;
+    }
 }
 
 void Game::UpdateGame() {
