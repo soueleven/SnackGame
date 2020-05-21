@@ -41,6 +41,7 @@ public:
     void InsertHead(vector2 pos);
     void DeleteLast();
     int SearchNode(vector2 pos);
+    int SearchBodyNode(vector2 pos);
 
     SnackNode* GetFirst() {return first;};
 };
