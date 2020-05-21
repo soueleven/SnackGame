@@ -17,6 +17,8 @@ const int DIRECTION_DOWN = 1;
 const int DIRECTION_RIGHT = 2;
 const int DIRECTION_LEFT = 3;
 
+float delay = 0;
+
 Game::Game()
 :window(nullptr)
 ,renderer(nullptr)
@@ -117,6 +119,48 @@ void Game::ProcessInput() {
 }
 
 void Game::UpdateGame() {
+    float deltaTime = SDL_GetTicks() - ticksCount;
+    ticksCount = SDL_GetTicks();
+
+    delay+=deltaTime;
+
+    // snack move for per 0.1s
+    if (delay >= 100) {
+        switch (direction) {
+            case DIRECTION_UP:
+                snack.InsertHead(vector2{snack.GetFirst()->GetPos().x, snack.GetFirst()->GetPos().y-POINT_WH});
+                break;
+            case DIRECTION_DOWN:
+                snack.InsertHead(vector2{snack.GetFirst()->GetPos().x, snack.GetFirst()->GetPos().y+POINT_WH});
+                break;
+            case DIRECTION_RIGHT:
+                snack.InsertHead(vector2{snack.GetFirst()->GetPos().x+POINT_WH, snack.GetFirst()->GetPos().y});
+                break;
+            case DIRECTION_LEFT:
+                snack.InsertHead(vector2{snack.GetFirst()->GetPos().x-POINT_WH, snack.GetFirst()->GetPos().y});
+                break;
+            default:
+                break;
+        }
+        snack.DeleteLast();
+        delay = 0;
+
+        if (snack.SearchBodyNode(snack.GetFirst()->GetPos()) > 0) {
+            isRunning = false;
+        }
+
+        if ((snack.GetFirst()->GetPos().x < 0) ||
+            (snack.GetFirst()->GetPos().x > (WIDTH - POINT_WH)) ||
+            (snack.GetFirst()->GetPos().y < 0 ||
+             snack.GetFirst()->GetPos().y > (HEIGHT - POINT_WH))) {
+            isRunning = false;
+        }
+
+        if (snack.SearchNode(feed) > -1) {
+            snack.InsertHead(feed);
+            RandomFeedPosition(snack, &feed);
+        }
+    }
 }
 
 void Game::GenerateOutput() {
