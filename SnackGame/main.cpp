@@ -7,9 +7,19 @@
 //
 
 #include <iostream>
+#include "Game.hpp"
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+int main() {
+    Game game;
+    bool isSuccess = game.Initialize();
+
+    if (isSuccess) {
+        game.RunLoop();
+    } else {
+        std::cout << "Faild\n";
+    }
+
+    game.Shutdown();
+
     return 0;
 }
