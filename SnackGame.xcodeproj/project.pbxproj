@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E42769172474EA650027845B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E42769162474EA650027845B /* main.cpp */; };
 		E427691F2474F27A0027845B /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E427691E2474F27A0027845B /* SDL2.framework */; };
+		E427692A24751C110027845B /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E427692924751C110027845B /* Game.cpp */; };
+		E427692D24751C240027845B /* Snack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E427692B24751C240027845B /* Snack.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +29,10 @@
 		E42769132474EA650027845B /* SnackGame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SnackGame; sourceTree = BUILT_PRODUCTS_DIR; };
 		E42769162474EA650027845B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E427691E2474F27A0027845B /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		E427692824751C110027845B /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
+		E427692924751C110027845B /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		E427692B24751C240027845B /* Snack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Snack.cpp; sourceTree = "<group>"; };
+		E427692C24751C240027845B /* Snack.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Snack.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +67,10 @@
 		E42769152474EA650027845B /* SnackGame */ = {
 			isa = PBXGroup;
 			children = (
+				E427692B24751C240027845B /* Snack.cpp */,
+				E427692C24751C240027845B /* Snack.hpp */,
+				E427692924751C110027845B /* Game.cpp */,
+				E427692824751C110027845B /* Game.hpp */,
 				E42769162474EA650027845B /* main.cpp */,
 			);
 			path = SnackGame;
@@ -132,6 +142,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E42769172474EA650027845B /* main.cpp in Sources */,
+				E427692A24751C110027845B /* Game.cpp in Sources */,
+				E427692D24751C240027845B /* Snack.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
