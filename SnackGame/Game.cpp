@@ -107,7 +107,31 @@ void Game::GenerateOutput() {
     // Generate Background
     SDL_SetRenderDrawColor(renderer, 0, 128, 0, 255);
     SDL_RenderClear(renderer);
-    
+
+    // Generate Snack
+    SDL_SetRenderDrawColor(renderer, 192, 192, 192, 192);
+    SnackNode *current = snack.GetFirst();
+    while (current != 0) {
+        SDL_Rect node{
+            static_cast<int>(current->GetPos().x),
+            static_cast<int>(current->GetPos().y),
+            POINT_WH, // Width
+            POINT_WH // Height
+        };
+        SDL_RenderFillRect(renderer, &node);
+        current = current->GetNext();
+    }
+
+    SDL_SetRenderDrawColor(renderer, 255, 50, 0, 255);
+    // Generate Feed
+    SDL_Rect appleNode{
+        static_cast<int>(feed.x),
+        static_cast<int>(feed.y),
+        POINT_WH, // Width
+        POINT_WH // Height
+    };
+    SDL_RenderFillRect(renderer, &appleNode);
+
     SDL_RenderPresent(renderer);
 }
 
